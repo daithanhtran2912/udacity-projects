@@ -12,4 +12,4 @@
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker push daithanhtran2912/udagram-api-feed:v1
-# Do similar for other three images
+# Do similar for other three images 
