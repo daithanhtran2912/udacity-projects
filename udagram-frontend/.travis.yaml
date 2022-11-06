@@ -1,15 +1,15 @@
 # Assuming the .travis.yml file is in the project directory, and there is a separate sub-directory for each service
 # Use either `docker-compose` or individual `docker build` commands
 # Build
-- docker build -t udagram-api-feed ./udagram-api-user
+- docker build -t udagram-api-feed ./udagram-frontend
 # Do similar for other three images
 
 # Tagging
-- docker tag udagram-api-feed daithanhtran2912/udagram-api-user:v1
+- docker tag udagram-api-feed daithanhtran2912/udagram-frontend:v1
 # Do similar for other three images
 
 # Push
 # Assuming DOCKER_PASSWORD and DOCKER_USERNAME are set in the Travis repository settings
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker push daithanhtran2912/udagram-api-user:v1
+- docker push daithanhtran2912/udagram-frontend:v1
 # Do similar for other three images
