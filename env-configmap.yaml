@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  AWS_BUCKET: arn:aws:s3:::your-bucket
+  AWS_PROFILE: default
+  AWS_REGION: us-east-2
+  URL: http://localhost:8100
