@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: udagram-api-feed
   labels:
-    app: udagram-api-feed
+    service: udagram-api-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: udagram-api-feed
+      service: udagram-api-feed
   template:
     metadata:
       labels:
-        app: udagram-api-feed
+        service: udagram-api-feed
     spec:
       containers:
       - image: daithanhtran2912/udagram-api-feed:v1
@@ -20,10 +20,10 @@ spec:
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "64Mi"
+            memory: "512Mi"
             cpu: "250m"
           limits:
-            memory: "2048Mi"
+            memory: "1024Mi"
             cpu: "500m"
         envFrom:
         - configMapRef:
@@ -74,4 +74,14 @@ spec:
             configMapKeyRef:
               name: env-config
               key: URL
+        volumeMounts:
+          - name: aws-secret
+            mountPath: "/root/.aws/"
+            readOnly: true
+      imagePullSecrets:
+        - name: regcred
       restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret

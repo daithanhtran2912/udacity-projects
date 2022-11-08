@@ -6,9 +6,9 @@ services:
           - 8080:8080
       restart: always
       depends_on:
-        - api-user
-        - api-feed
-  api-user:
+        - udagram-api-user
+        - udagram-api-feed
+  udagram-api-user:
     image: udagram-api-user
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
@@ -20,7 +20,7 @@ services:
       AWS_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: "http://localhost:8100"
-  api-feed:
+  udagram-api-feed:
     image: udagram-api-feed
     volumes:
       - $HOME/.aws:/root/.aws
