@@ -12,7 +12,7 @@ const logger = createLogger('auth')
 // TODO: Provide a URL that can be used to download a certificate that can be used
 // to verify JWT token signature.
 // To get this URL you need to go to an Auth0 page -> Show Advanced Settings -> Endpoints -> JSON Web Key Set
-const jwksUrl = '...'
+const jwksUrl = 'https://dev-ocbixlgoth33ls7e.us.auth0.com/.well-known/jwks.json'
 
 export const handler = async (
   event: CustomAuthorizerEvent
@@ -61,7 +61,27 @@ async function verifyToken(authHeader: string): Promise<JwtPayload> {
   // TODO: Implement token verification
   // You should implement it similarly to how it was implemented for the exercise for the lesson 5
   // You can read more about how to do this here: https://auth0.com/blog/navigating-rs256-and-jwks/
-  return undefined
+  let secretKey: string
+  try {
+    const keysArr = await Axios.get(jwksUrl)
+    // Extract x509 certificate chain
+    const key = keysArr['data']['keys'][0]['x5c'][0]
+    secretKey = `-----BEGIN CERTIFICATE-----\n${key}\n-----END CERTIFICATE-----`
+  } catch (e) {
+    logger.error("Unable to retrieve Jwks certificate. Error: " + e)
+  }
+  const payload = jwt.payload;
+  verify(token, secretKey, { algorithms: ["RS256"] }, function (error, decoded: Object) {
+    if (error) {
+      throw new Error("Invalid JWT token.");
+    }
+
+    if (decoded["sub"] !== payload.sub || decoded["iss"] !== payload.iss ||
+      decoded["iat"] !== payload.iat || decoded["exp"] !== payload.exp) {
+      throw new Error("Unmatch JWT token!")
+    }
+  })
+  return payload;
 }
 
 function getToken(authHeader: string): string {
