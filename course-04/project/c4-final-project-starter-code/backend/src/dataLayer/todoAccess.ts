@@ -65,8 +65,8 @@ export class TodoAccess {
     await this.docClient.update({
       TableName: this.todosTable,
       Key: {
-        userId: userId,
-        todoId: todoId
+        userId,
+        todoId
       },
       UpdateExpression: "SET #name = :name, #dueDate = :dueDate, #done = :done",
       ExpressionAttributeNames: {
@@ -100,13 +100,17 @@ export class TodoAccess {
     }
 
     logger.info(`Update presigned url for todo by id ${todoId} for user with id ${userId}`);
+    console.log(attachmentUrl);
     await this.docClient.update({
       TableName: this.todosTable,
       Key: {
-        userId: userId,
-        todoId: todoId
+        userId,
+        todoId
       },
-      UpdateExpression: "SET attachmentUrl = :attachmentUrl",
+      UpdateExpression: "SET #attachmentUrl = :attachmentUrl",
+      ExpressionAttributeNames: {
+        "#attachmentUrl": "attachmentUrl"
+      },
       ExpressionAttributeValues: {
         ":attachmentUrl": attachmentUrl
       }
