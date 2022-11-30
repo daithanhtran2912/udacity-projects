@@ -1,7 +1,7 @@
 import { TodoAccess } from "../dataLayer/todoAccess";
 import { CreateTodoRequest } from "../requests/CreateTodoRequest";
 import { UpdateTodoRequest } from "../requests/UpdateTodoRequest";
-import { createAttachmentUrl, createPresignUrl } from "../helpers/attachmentUtils";
+import { createAttachmentUrl, createPresignUrl, deleteAttachmentUrl } from "../helpers/attachmentUtils";
 
 import * as uuid from 'uuid';
 
@@ -33,6 +33,12 @@ export async function updateTodo(updateTodoRequest: UpdateTodoRequest, userId: s
 }
 
 export async function deleteTodo(userId: string, todoId: string) {
+  // delete bucket object if exist
+  const currentTodo = await toDoAccess.getTodoForUserById(userId, todoId);
+  const attachmentUrl = currentTodo.attachmentUrl;
+  if (attachmentUrl) {
+    await deleteAttachmentUrl(todoId);
+  }
   return await toDoAccess.deleteTodo(userId, todoId);
 }
 

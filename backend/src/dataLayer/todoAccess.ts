@@ -100,7 +100,6 @@ export class TodoAccess {
     }
 
     logger.info(`Update presigned url for todo by id ${todoId} for user with id ${userId}`);
-    console.log(attachmentUrl);
     await this.docClient.update({
       TableName: this.todosTable,
       Key: {
