@@ -1,6 +1,22 @@
 version: 2.1
 
-# commands:
+orbs:
+  slack: circleci/slack@4.12.5
+
+commands:
+  slack-custom-noti:
+    parameters:
+      job-name:
+        default: "your job"
+        type: string
+    step:
+      - slack/notify:
+          event: fail
+          mentions: '@channel'
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 #   destroy-environment:
 #     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
 #     parameters:
@@ -49,6 +65,8 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
+      - slack-custom-noti:
+          job-name: 'build-frontend'
 
   build-backend:
     docker:
@@ -66,6 +84,8 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
+      - slack-custom-noti:
+          job-name: 'build-backend'
 
   test-frontend:
     docker:
@@ -83,6 +103,8 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-test
+      - slack-custom-noti:
+          job-name: 'test-frontend'
 
   test-backend:
     docker:
@@ -100,6 +122,8 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-test
+      - slack-custom-noti:
+          job-name: 'test-backend'
 
   scan-frontend:
     docker:
@@ -118,6 +142,8 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-scan
+      - slack-custom-noti:
+          job-name: 'scan-frontend'
 
   scan-backend:
     docker:
@@ -136,6 +162,8 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan
+      - slack-custom-noti:
+          job-name: 'scan-backend'
 
   deploy-infrastructure:
     # docker:
