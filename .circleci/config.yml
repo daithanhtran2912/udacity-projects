@@ -5,11 +5,7 @@ orbs:
 
 commands:
   slack-custom-noti:
-    parameters:
-      job-name:
-        default: "your job"
-        type: string
-    step:
+    steps:
       - slack/notify:
           event: fail
           mentions: '@channel'
@@ -65,8 +61,7 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-      - slack-custom-noti:
-          job-name: 'build-frontend'
+      - slack-custom-noti
 
   build-backend:
     docker:
@@ -84,8 +79,7 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-      - slack-custom-noti:
-          job-name: 'build-backend'
+      - slack-custom-noti
 
   test-frontend:
     docker:
@@ -103,8 +97,7 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-test
-      - slack-custom-noti:
-          job-name: 'test-frontend'
+      - slack-custom-noti
 
   test-backend:
     docker:
@@ -122,8 +115,7 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-test
-      - slack-custom-noti:
-          job-name: 'test-backend'
+      - slack-custom-noti
 
   scan-frontend:
     docker:
@@ -142,8 +134,7 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-scan
-      - slack-custom-noti:
-          job-name: 'scan-frontend'
+      - slack-custom-noti
 
   scan-backend:
     docker:
@@ -162,8 +153,7 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan
-      - slack-custom-noti:
-          job-name: 'scan-backend'
+      - slack-custom-noti
 
   deploy-infrastructure:
     # docker:
