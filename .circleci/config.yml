@@ -8,7 +8,7 @@ commands:
     steps:
       - slack/notify:
           event: fail
-          mentions: '@channel'
+          mentions: "@channel"
           template: basic_fail_1
       - slack/notify:
           event: pass
