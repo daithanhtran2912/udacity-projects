@@ -26,13 +26,13 @@ commands:
           command: |
             # Delete S3 bucket
             echo "Deleting S3 Bucket..."
-            aws s3 rb --force s3://udapeople-<<parameters.workflow-id>>
+            aws s3 rb --force s3://udapeople-<< parameters.workflow-id >>
             # Delete CloudFormation Frontend stack
             echo "Deleting CloudFormation Frontend stack..."
-            aws cloudformation delete-stack --stack-name "udapeople-frontend-<<parameters.workflow-id>>" --output text
+            aws cloudformation delete-stack --stack-name "udapeople-frontend-<< parameters.workflow-id >>" --output text
             # Delete CloudFormation Backend stack
             echo "Deleting CloudFormation Backend stack..."
-            aws cloudformation delete-stack --stack-name "udapeople-backend-<<parameters.workflow-id>>" --output text
+            aws cloudformation delete-stack --stack-name "udapeople-backend-<< parameters.workflow-id >>" --output text
 
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.
@@ -171,7 +171,6 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      # Checkout code from git
       - checkout
       - run:
           name: Install tar and gzip
@@ -229,7 +228,7 @@ jobs:
             apk add --update ansible
             pip install awscli
       - run:
-          name: Configure server
+          name: "Configure backend variables - Ref: https://knowledge.udacity.com/questions/389418"
           command: |
             echo ENVIROMENT=production > "backend/.env"
             echo TYPEORM_CONNECTION=postgres >> "backend/.env"
@@ -242,13 +241,16 @@ jobs:
             echo TYPEORM_PASSWORD=${TYPEORM_PASSWORD} >> backend/.env
             echo TYPEORM_DATABASE=${TYPEORM_DATABASE} >> backend/.env
             cat backend/.env
-            cd .circleci/ansible
-            cat inventory.txt
-            ansible-playbook -i inventory.txt configure-server.yml
       - persist_to_workspace:
           root: ~/
           paths:
             - project/backend/.env
+      - run:
+          name: Configure server variables
+          command: |
+            cd .circleci/ansible
+            cat inventory.txt
+            ansible-playbook -i inventory.txt configure-server.yml
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
           workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
@@ -263,9 +265,15 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          name: Install dependencies
+          command: |
+            sudo apt update
+            sudo apt install -y awscli
+      - run:
           name: Run migrations
           command: |
             cd backend
+            cat .env
             npm install
             npm run migrations > migrations_dump.txt
       - run:
@@ -287,17 +295,16 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Install dependencies
+          name: Install tar gzip
           command: |
             sudo apt-get update
             sudo apt-get -y install tar
             sudo apt-get -y install gzip
       - run:
-          name: Install AWS cli v2
+          name: Install python & awscli
           command: |
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
+            sudo apt-get install -y python3-pip
+            pip3 install --upgrade awscli
       - run:
           name: Get backend url
           command: |
@@ -324,21 +331,39 @@ jobs:
           workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
 
   deploy-backend:
-    # docker:
-    #   # Docker image here that supports Ansible
-    # steps:
-    #   # Checkout code from git
-    #   # Add ssh keys with fingerprint
-    #   # attach workspace
-    #   - run:
-    #       name: Install dependencies
-    #       command: |
-    #         # your code here
-    #   - run:
-    #       name: Deploy backend
-    #       command: |
-    #         # your code here
-    #   # Here's where you will add some code to rollback on failure
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: 
+            - "4f:53:50:3d:18:a0:da:3c:95:48:62:00:ea:8a:82:6f"
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install dependencies
+          working_directory: /tmp
+          command: |
+            apk add --update ansible curl rsync openssh nodejs npm tree
+            pip install awscli
+      - run:
+          name: Deploy backend
+          command: |
+            cd backend
+            npm install
+            npm run build
+            cd ..
+            tar -C backend -czvf artifact.tar.gz .
+            cd .circleci/ansible
+            echo "Contents of the inventory.txt file is -------"
+            cat inventory.txt
+            export ANSIBLE_HOST_KEY_CHECKING=False
+            ansible-playbook -i inventory.txt deploy-backend.yml
+      # Here's where you will add some code to rollback on failure
+      - destroy-environment:
+          workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
+      - revert-migrations:
+          workflow-id: ${CIRCLE_WORKFLOW_ID:0:7}
 
   smoke-test:
     # docker:
@@ -421,8 +446,8 @@ workflows:
           requires: [configure-infrastructure]
       - deploy-frontend:
           requires: [run-migrations]
-      # - deploy-backend:
-      #     requires: [run-migrations]
+      - deploy-backend:
+          requires: [run-migrations]
       # - smoke-test:
       #     requires: [deploy-backend, deploy-frontend]
       # - cloudfront-update:
