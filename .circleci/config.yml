@@ -270,24 +270,25 @@ jobs:
           command: |
             sudo apt update
             sudo apt install -y awscli
+            sudo apt install -y curl
       - run:
           name: Run migrations
           command: |
             cd backend
             cat .env
-            sudo apt-get update
-            sudo apt-get install awscli -y
-            sudo apt-get install curl -y
-            sudo apt-get install curl -y
             npm install
             npm run migrations > migrations_dump.txt
+            cat migrations_dump.txt
       - run:
           name: Send migration status to kvdb.io
           command: |
-            if grep -q "success" ~/project/backend/migrations_dump.txt
+            if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
               curl --insecure https://kvdb.io/NRMRwdewxUCmhvQgDx8Rxu/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d '1'
-              echo "Migration status has been sent!"
+              echo "Migration status 1 has been sent!"
+            else
+              curl --insecure https://kvdb.io/NRMRwdewxUCmhvQgDx8Rxu/migrations-${CIRCLE_WORKFLOW_ID:0:7} -d "0"
+              echo "Migration status 0 has been sent!"
             fi
       # Here's where you will add some code to rollback on failure
       - destroy-environment:
