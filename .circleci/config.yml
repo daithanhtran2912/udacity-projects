@@ -278,6 +278,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install awscli -y
             sudo apt-get install curl -y
+            sudo apt-get install curl -y
             npm install
             npm run migrations > migrations_dump.txt
       - run:
