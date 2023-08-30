@@ -388,17 +388,16 @@ jobs:
             echo "Installing node..."
             apk add --update nodejs npm
       - run:
-          name: Get backend IP
+          name: Backend smoke test.
           command: |
+            echo "Get backend IP"
             export BACKEND_IP=$(aws ec2 describe-instances \
               --filters Name=tag:Name,Values="backend-${CIRCLE_WORKFLOW_ID:0:7}" Name=instance-state-name,Values=running \
               --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --output text)
             export API_URL="http://${BACKEND_IP}:3030"
             echo "${API_URL}"
-      - run:
-          name: Backend smoke test.
-          command: |
+
             if curl "${API_URL}/api/status" | grep "ok"
             then
               echo SUCCESS
