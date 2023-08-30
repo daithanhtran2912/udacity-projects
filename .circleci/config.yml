@@ -432,8 +432,8 @@ jobs:
           name: Install dependencies
           command: |
             echo "Installing nodejs..."
-            curl -sL https://rpm.nodesource.com/setup_lts.x | bash -
-            yum -y install nodejs
+            curl -sL https://rpm.nodesource.com/setup_13.x | bash -
+            yum -y install nodejs-13.8.0
             yum -y install npm
       - run:
           name: Update cloudfront distribution
