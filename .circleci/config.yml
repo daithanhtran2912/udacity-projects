@@ -385,6 +385,8 @@ jobs:
             apk add --update curl
             echo "Installing awscli..."
             pip install awscli
+            echo "Installing node..."
+            apk add --update nodejs npm
       - run:
           name: Get backend IP
           command: |
