@@ -4,6 +4,7 @@
     file: 
       path: /home/ubuntu/backend
       state: directory
+      mode: 0755
 
   - name: Copy artifact file
     become: true
