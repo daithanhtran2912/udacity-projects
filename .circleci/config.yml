@@ -472,12 +472,14 @@ jobs:
             echo List backend stacks: "${BACKEND_STACKS[@]}"
             echo "========================================"
             echo "Removing old stacks and files..."
+            echo CIRCLE_WORKFLOW_ID: ${CIRCLE_WORKFLOW_ID:0:7}
             for BACKEND_STACK in "${BACKEND_STACKS[@]}"
             do
-              OLD_WORKFLOW_ID=${BACKENDSTACK: -7}
-              echo ">>>>>> Cleaning up resources of OLD_WORKFLOW_ID: ${OLD_WORKFLOW_ID}..."
+              OLD_WORKFLOW_ID=${BACKEND_STACK: -7}
+              echo OLD_WORKFLOW_ID: ${OLD_WORKFLOW_ID}
               if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OLD_WORKFLOW_ID}" ]]
               then
+                echo ">>>>>> Cleaning up resources of OLD_WORKFLOW_ID: ${OLD_WORKFLOW_ID}..."
                 echo "========== Removing old S3 bucket: s3://udapeople-${OLD_WORKFLOW_ID} =========="
                 aws s3 rm "s3://udapeople-${OLD_WORKFLOW_ID}" --recursive --output text
                 echo "========== Removing old frontend stack: udapeople-frontend-${OLD_WORKFLOW_ID} =========="
