@@ -460,6 +460,8 @@ jobs:
             export OLD_WORKFLOW_ID=$(aws cloudformation list-exports \
               --query "Exports[?Name==\`WorkflowID\`].Value" \
               --no-paginate --output text)
+            # Substring OLD_WORKFLOW_ID to get the ID number
+            export OLD_WORKFLOW_ID=${OLD_WORKFLOW_ID:-7}
             echo OLD_WORKFLOW_ID: "${OLD_WORKFLOW_ID}"
             echo CIRCLE_WORKFLOW_ID "${CIRCLE_WORKFLOW_ID:0:7}"
             export STACKS=($(aws cloudformation list-stacks \
