@@ -1,1 +1,17 @@
-<paste log output from Kubernetes-mediated prediction, here>
+# Log info of ./run_kubernetes.sh command
+$ ./run_kubernetes.sh
+pod/housing-price-prediction-app created
+NAME                           READY   STATUS    RESTARTS   AGE
+housing-price-prediction-app   1/1     Running   0          60s
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
+Handling connection for 8000
+
+# Log info of ./make_prediction.sh command
+$ ./make_prediction.sh 
+Port: 8000
+{
+  "prediction": [
+    20.35373177134412
+  ]
+}
