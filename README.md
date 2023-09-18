@@ -35,7 +35,7 @@ python3 -m virtualenv --python=<path-to-Python3.7> .devops
 source .devops/bin/activate
 ```
 
-* Install hadolint: (https://github.com/hadolint/hadolint)
+* Install `hadolint`: (https://github.com/hadolint/hadolint)
 ```bash
 wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
 chmod +x /bin/hadolint
@@ -52,6 +52,40 @@ chmod +x /bin/hadolint
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
+1. Install Docker follow this [link](https://docs.docker.com/engine/install/ubuntu/).
+2. Run script `./run_docker.sh`.
+3. Using `docker images` to check if the image is created.
+4. Using `docker ps` to verify that container is already running.
+5. Run script `./make_prediction.sh` to make prediction.
+
 * Setup and Configure Kubernetes locally
+```bash
+# Download minikube
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+# Install minikube
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+# Check if minikube is successfully installed
+minikube version
+
+# Start minikube
+minikube start
+
+# Get pods
+kubectl get pods
+
+# Run kubernetes
+./run_kubernetes.sh
+
+# Make prediction
+./make_prediction.sh
+```
 * Create Flask app in Container
-* Run via kubectl
+```bash
+# To create flask app
+./run_docker.sh
+
+# Push image to docker hub
+./upload_docker.sh
+```
