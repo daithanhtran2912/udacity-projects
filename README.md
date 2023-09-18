@@ -34,6 +34,13 @@ python3 -m pip install --user virtualenv
 python3 -m virtualenv --python=<path-to-Python3.7> .devops
 source .devops/bin/activate
 ```
+
+* Install hadolint: (https://github.com/hadolint/hadolint)
+```bash
+wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
+chmod +x /bin/hadolint
+```
+
 * Run `make install` to install the necessary dependencies
 
 ### Running `app.py`
