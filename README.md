@@ -14,9 +14,9 @@ In this project you will apply the skills and knowledge which were developed thr
 
 ## Setup the Environment
 
-* Install `[Python](https://www.python.org/downloads/release/python-379/)`.
+* Install [Python](https://www.python.org/downloads/release/python-379/).
 
-* Install `[Docker](https://docs.docker.com/engine/install/)`.
+* Install [Docker](https://docs.docker.com/engine/install/).
 
 * Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
 ```bash
@@ -30,13 +30,13 @@ source .devops/bin/activate
 
 * Run `make install` to install the necessary dependencies
 
-* Install `[hadolint](https://github.com/hadolint/hadolint)`:
+* Install [hadolint](https://github.com/hadolint/hadolint):
 ```bash
 wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
 chmod +x /bin/hadolint
 ```
 
-* Install `[kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)`
+* Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl):
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
@@ -45,7 +45,7 @@ or
 kubectl version --client --output=yaml
 ```
 
-* Install `[minikube](https://kubernetes.io/docs/tasks/tools/#minikube)`
+* Install [minikube](https://kubernetes.io/docs/tasks/tools/#minikube):
 ```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
