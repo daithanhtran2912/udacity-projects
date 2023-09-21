@@ -1,6 +1,6 @@
 ## Project Overview
 ### Udacity Cloud DevOps Engineer Capstone Project
-A simple Hello World project.
+A simple Python `Hello World` project using [Flask](https://flask.palletsprojects.com/en/2.3.x/).
 
 In this project you will apply the skills and knowledge which were developed throughout the Cloud DevOps Nanodegree program. These include:
 * Working in AWS
@@ -53,10 +53,12 @@ minikube version
 ```
 ---
 
-### Running `app.py`
+## Running `app.py`
 
 1. Standalone:  `python app.py`
 2. Run in Docker:  `./run_docker.sh`
 3. Run in Kubernetes:  `./run_kubernetes.sh`
 
+---
 
+`Source code for html/css files: https://codepen.io/pokecoder/pen/gOXrxVY`
