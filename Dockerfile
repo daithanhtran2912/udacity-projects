@@ -7,7 +7,7 @@ WORKDIR /app
 ## Step 2:
 # Copy source code to working directory
 COPY . app.py /app/
-COPY . static/templates /app/static/templates/
+COPY . templates/static /app/templates/static/
 
 ## Step 3:
 # Install packages from requirements.txt
