@@ -16,7 +16,7 @@ jobs:
           command: |
             echo "Setup Python virtual environment..."
             make create
-            cd .devenv
+            cd .devenv/bin
             ls -a
             . devenv/bin/activate
             echo "Install dependencies..."
