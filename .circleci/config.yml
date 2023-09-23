@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   lint-code:
     docker:
-      - image: python:3.7.3-stretch
+      - image: python:3.7.9
     steps:
       - checkout
       - restore_cache:
@@ -15,7 +15,8 @@ jobs:
           name: Install dependencies
           command: |
             echo "Setup Python virtual environment..."
-            make setup
+            python -m venv devenv
+            source devenv/bin/activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
@@ -28,7 +29,7 @@ jobs:
       - run:
           name: Linting code
           command: |
-            make activate
+            source devenv/bin/activate
             make lint
 
 workflows:
