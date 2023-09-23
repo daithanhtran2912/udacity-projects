@@ -4,7 +4,7 @@ create:
 
 activate:
 	# Activate virtual environment
-	source venv/bin/activate
+	. venv/bin/activate
 
 setup: create activate
 

@@ -20,7 +20,7 @@ jobs:
             ls -a
             cd bin
             ls -a
-            source venv/bin/activate
+            . venv/bin/activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Linting code
           command: |
-            source venv/bin/activate
+            . venv/bin/activate
             make lint
 
 workflows:
