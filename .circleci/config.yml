@@ -15,7 +15,9 @@ jobs:
           name: Install dependencies
           command: |
             echo "Setup Python virtual environment..."
-            make setup
+            make create
+            ls
+            make activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
