@@ -1,10 +1,10 @@
 create:
 	# Create Python virtual environment
-	python -m venv venv
+	python -m venv devenv
 
 activate:
 	# Activate virtual environment
-	. venv/bin/activate
+	source devenv/bin/activate
 
 setup: create activate
 
