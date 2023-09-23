@@ -4,7 +4,7 @@ create:
 
 activate:
 	# Activate virtual environment
-	.devenv/bin/activate
+	source .devenv/bin/activate
 
 setup: create activate
 
