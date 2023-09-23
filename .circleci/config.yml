@@ -15,8 +15,7 @@ jobs:
           name: Install dependencies
           command: |
             echo "Setup Python virtual environment..."
-            python -m venv devenv
-            source devenv/bin/activate
+            make setup
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
@@ -29,7 +28,7 @@ jobs:
       - run:
           name: Linting code
           command: |
-            source devenv/bin/activate
+            make activate
             make lint
 
 workflows:
