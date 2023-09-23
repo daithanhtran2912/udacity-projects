@@ -1,8 +1,12 @@
-setup:
+create:
 	# Create Python virtual environment
-	python -m venv .devenv
-	# Active virtual environment
-	source .devenv/Scripts/activate
+	python3 -m venv .devenv
+
+activate:
+	# Activate virtual environment
+	source .devenv/bin/activate
+
+setup: create activate
 
 install:
 	# Install dependencies

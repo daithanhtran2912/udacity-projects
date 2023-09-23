@@ -61,4 +61,4 @@ minikube version
 
 ---
 
-`Source code for html/css files: https://codepen.io/pokecoder/pen/gOXrxVY`
+Source code for html/css files: https://codepen.io/pokecoder/pen/gOXrxVY
