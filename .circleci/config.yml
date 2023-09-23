@@ -49,7 +49,7 @@ jobs:
             echo "Login to Docker Hub..."
             docker login --username "$DOCKER_HUB_USERNAME" --password "$DOCKER_HUB_PASSWORD"
             echo "Tag image..."
-            docker tag simple-hello-world-app simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
+            docker tag simple-hello-world-app:latest simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
             echo "Push image to Docker Hub..."
             docker push "$DOCKER_HUB_USERNAME"/simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
 
