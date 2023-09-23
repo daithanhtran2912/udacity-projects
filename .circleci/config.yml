@@ -31,7 +31,7 @@ jobs:
             make activate
             make lint
 
-  build-docker-image:
+  build-and-push-docker-image:
     docker:
       - image: cimg/python:3.7
     steps:
@@ -44,31 +44,23 @@ jobs:
             make activate
             docker build -t simple-hello-world-app:latest .
             docker images
-
-  push-docker-image:
-    docker:
-      - image: cimg/python:3.7
-    steps:
-      name: Push Docker image to Docker Hub
-      command: |
-        echo "Login to Docker Hub..."
-        docker login --username "$DOCKER_HUB_USERNAME" --password "$DOCKER_HUB_PASSWORD"
-        echo "Tag image..."
-        docker tag simple-hello-world-app simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
-        echo "Push image to Docker Hub..."
-        docker push "$DOCKER_HUB_USERNAME"/simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
-
+      - run:
+          name: Push image to Docker Hub
+          command: |
+            echo "Login to Docker Hub..."
+            docker login --username "$DOCKER_HUB_USERNAME" --password "$DOCKER_HUB_PASSWORD"
+            echo "Tag image..."
+            docker tag simple-hello-world-app simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
+            echo "Push image to Docker Hub..."
+            docker push "$DOCKER_HUB_USERNAME"/simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
 
 workflows:
   default:
     jobs:
       - lint-code
-      - build-docker-image:
+      - build-and-push-docker-image:
           requires:
             - lint-code
           filters:
             branches:
               only: [main]
-      - push-docker-image:
-          requires:
-            - build-docker-image
