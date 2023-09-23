@@ -15,12 +15,12 @@ jobs:
           name: Install dependencies
           command: |
             echo "Setup Python virtual environment..."
-            python3 -m venv devenv
-            cd devenv
+            python -m venv venv
+            cd venv
             ls -a
             cd bin
             ls -a
-            source devenv/bin/activate
+            source venv/bin/activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
@@ -28,12 +28,12 @@ jobs:
             chmod +x /bin/hadolint
       - save_cache:
           paths:
-            - ./devenv
+            - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
           name: Linting code
           command: |
-            source devenv/bin/activate
+            source venv/bin/activate
             make lint
 
 workflows:
