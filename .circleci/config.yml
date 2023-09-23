@@ -40,7 +40,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
             - v1-dependencies-
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.17
       - run:
           name: Build Docker image
           command: |
