@@ -18,7 +18,7 @@ jobs:
             make create
             cd .devenv/bin
             ls -a
-            . devenv/bin/activate
+            . devenv/bin/activate.csh
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
