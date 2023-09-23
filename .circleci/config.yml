@@ -16,8 +16,8 @@ jobs:
           command: |
             echo "Setup Python virtual environment..."
             make create
-            ls
-            make activate
+            ls -a
+            . devenv/bin/activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
