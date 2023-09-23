@@ -13,6 +13,15 @@ In this project you will apply the skills and knowledge which were developed thr
 ---
 
 ## Setup the Environment
+To run this project, you should have:
+* CircleCI and GitHub account to setup CI/CD
+* AWS credentials
+* Config CircleCI project environment variables:
+** AWS_DEAFULT_REGION
+** AWS_ACCESS_KEY_ID
+** AWS_SECRET_ACCESS_KEY
+** DOCKER_HUB_USERNAME
+** DOCKER_HUB_PASSWORD
 
 * Install [Python](https://www.python.org/downloads/release/python-379/).
 
