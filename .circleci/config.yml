@@ -16,9 +16,9 @@ jobs:
           command: |
             echo "Setup Python virtual environment..."
             make create
-            cd .devenv/bin
+            cd devenv/bin
             ls -a
-            source .devenv/bin/activate
+            source devenv/bin/activate
             echo "Install dependencies..."
             make install
             echo "Install hadolint..."
@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Linting code
           command: |
-            source .devenv/bin/activate
+            source devenv/bin/activate
             make lint
 
 workflows:
