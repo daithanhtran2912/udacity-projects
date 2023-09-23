@@ -33,7 +33,7 @@ jobs:
 
   build-docker-image:
     docker:
-      - image: python:3.7.3-stretch
+      - image: cimg/python:3.7
     steps:
       - checkout
       - restore_cache:
