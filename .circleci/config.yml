@@ -50,6 +50,7 @@ jobs:
             docker login --username "$DOCKER_HUB_USERNAME" --password "$DOCKER_HUB_PASSWORD"
             echo "Tag image..."
             docker tag simple-hello-world-app:latest "$DOCKER_HUB_USERNAME"/simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
+            docker images
             echo "Push image to Docker Hub..."
             docker push "$DOCKER_HUB_USERNAME"/simple-hello-world-app:${CIRCLE_WORKFLOW_ID:0:7}
 
