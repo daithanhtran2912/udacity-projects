@@ -75,7 +75,7 @@ jobs:
           nodes-min: 2
           nodes-max: 2
           show-eksctl-command: true
-          ssh:access: true
+          ssh-access: true
   configure-infrastructure:
     docker:
       - image: cimg/python:3.7
