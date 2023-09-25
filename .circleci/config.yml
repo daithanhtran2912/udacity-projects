@@ -64,7 +64,7 @@ jobs:
       cluster-name:
         description: Name of the EKS cluster
         type: string
-        default: "simple-hello-world-app-cluster"
+        default: "simple-hello-world-app"
     steps:
       - checkout
       - aws-eks/create-cluster:
@@ -83,7 +83,7 @@ jobs:
       cluster-name:
         description: Name of the EKS cluster
         type: string
-        default: "simple-hello-world-app-cluster"
+        default: "simple-hello-world-app"
     steps:
       - checkout
       - restore_cache:
