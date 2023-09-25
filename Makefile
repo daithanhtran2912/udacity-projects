@@ -17,6 +17,6 @@ lint:
 	# Linter for Dockerfile
 	hadolint Dockerfile
 	# Linter for Python source code
-	pylint --disable=R,C,W1203 app.py
+	pylint app.py
 
 all: install lint
