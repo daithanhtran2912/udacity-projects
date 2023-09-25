@@ -29,6 +29,6 @@ spec:
     app: simple-hello-world-app
   type: LoadBalancer
   ports:
-    - protocols: TCP
+    - protocol: TCP
       port: 80
       targetPort: 80
