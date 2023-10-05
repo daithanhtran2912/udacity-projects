@@ -1,0 +1,47 @@
+{
+  "name": "cd0292-building-a-server-project",
+  "version": "1.0.0",
+  "description": "This project aims to give you a real-world scenario in which you would read and write to your disk via a Node.js express server rather than a database. The project you create serves two purposes: to prepare you for setting up scalable code and architecture for real-world projects and tie together some of the most popular middleware and utilities found in Node.js projects. This project barely touches the surface of what is possible but will prove your ability to use what you’ve learned in real-world scenarios.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx eslint ./src",
+    "prettier": "npx prettier --config .prettierrc ./src --write",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npx tsc",
+    "test": "npm run build && jasmine",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daithanhtran2912/cd0292-building-a-server-project.git"
+  },
+  "author": "ThanhTran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daithanhtran2912/cd0292-building-a-server-project/issues"
+  },
+  "homepage": "https://github.com/daithanhtran2912/cd0292-building-a-server-project#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.18",
+    "@types/jasmine": "^5.1.0",
+    "@types/node": "^13.13.52",
+    "@types/supertest": "^2.0.14",
+    "@types/typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.50.0",
+    "eslint-config-standard-with-typescript": "^39.1.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.1.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "jasmine": "^5.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "prettier": "^3.0.3",
+    "supertest": "^6.3.3",
+    "ts-node": "^8.10.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
