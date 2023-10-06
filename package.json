@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && npx tsc",
     "test": "npm run build && jasmine",
-    "start": ""
+    "start": "nodemon src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "@types/express": "^4.17.18",
     "@types/jasmine": "^5.1.0",
     "@types/node": "^13.13.52",
+    "@types/nodemon": "^1.19.3",
     "@types/supertest": "^2.0.14",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
@@ -36,6 +37,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "jasmine": "^5.1.0",
     "jasmine-spec-reporter": "^7.0.0",
+    "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "supertest": "^6.3.3",
     "ts-node": "^8.10.2",
