@@ -1,18 +1,22 @@
 import express, { Request, Response } from "express";
-import imageUtils from "../../utilities/imageUtils";
+import { fetchImagesCache } from "../../utilities/imageCache";
 
 const imagesRoute = express.Router();
 
-imagesRoute.get("/", (req: Request, res: Response): void => {
+imagesRoute.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const filename = req.query.filename as string;
     const height = parseInt(req.query.height as string);
     const width = parseInt(req.query.width as string);
-    imageUtils.validate(filename, height, width);
-    imageUtils.processImage();
-    res.status(200).send("200");
+    const imagePath = await fetchImagesCache(filename, height, width);
+    res.status(200).sendFile(imagePath);
   } catch (error) {
-    res.status(400).send("400 - " + error);
+    const html = `
+      <div style='font-family:courier,arial,helvetica;'>
+        <h1 style='text-align: center; padding-top: 10%'>400 - Bad Request</h1>
+        <h3 style='text-align: center;'>${error}</h3>
+      </div>`;
+    res.status(400).type("html").send(html);
   }
 });
 

@@ -7,7 +7,7 @@ api.use("/images", imagesRoute);
 
 api.get("/", (_req: Request, res: Response): void => {
   const html = `
-    <h3>
+    <h3 style='font-family:courier,arial,helvetica; padding-top: 10%'>
       <div style='text-align: center;'>
         GET <a href="/api/images">/api/images</a>
       </div>
