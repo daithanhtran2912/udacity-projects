@@ -23,6 +23,11 @@ Verify Node has been installed:
 node -v
 ```
 
+Verify npm has been installed:
+```bash
+npm -v
+```
+
 After Node has been installed:
 * Install project dependencies:
 ```bash
@@ -54,10 +59,7 @@ npm run test
 npm run start
 ```
 
-* Now you can try the application through url:
-```bash
-http://localhost:3000/api/images?filename=santamonica&width=300&height=300
-```
+* Now you can try the application through url: http://localhost:3000/api/images?filename=santamonica&width=300&height=300
 
 ---
 
