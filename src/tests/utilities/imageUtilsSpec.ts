@@ -8,6 +8,12 @@ const width = 200;
 const height = 200;
 
 describe("Testing image valiation utility", (): void => {
+  beforeAll((): void => {
+    if (!fs.existsSync(IMAGES_THUMB_PATH)) {
+      fs.mkdirSync(IMAGES_THUMB_PATH);
+    }
+  });
+
   it("should throw error when filename is empty", async (): Promise<void> => {
     await expectAsync(processImage("", height, width)).toBeRejectedWithError("Unable to retrieve filename!");
   });

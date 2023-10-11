@@ -9,6 +9,12 @@ describe("Testing image caching utilities", (): void => {
   const height = 200;
   const thumbFilePath = path.join(IMAGES_THUMB_PATH, `${filename}_${width}x${height}.jpg`);
 
+  beforeAll((): void => {
+    if (!fs.existsSync(IMAGES_THUMB_PATH)) {
+      fs.mkdirSync(IMAGES_THUMB_PATH);
+    }
+  });
+
   it("should be able to get image from cache", async (): Promise<void> => {
     const imagePath = await fetchImagesCache(filename, height, width);
     expect(thumbFilePath).toBe(imagePath);
