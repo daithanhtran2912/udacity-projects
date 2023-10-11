@@ -55,7 +55,9 @@ npm run start
 ```
 
 * Now you can try the application through url:
+```bash
 http://localhost:3000/api/images?filename=santamonica&width=300&height=300
+```
 
 ---
 
