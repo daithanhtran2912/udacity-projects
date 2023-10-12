@@ -6,8 +6,8 @@ const imagesRoute = express.Router();
 imagesRoute.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const filename = req.query.filename as string;
-    const height = parseInt(req.query.height as string);
-    const width = parseInt(req.query.width as string);
+    const height = Number(req.query.height as string);
+    const width = Number(req.query.width as string);
     const imagePath = await fetchImagesCache(filename, height, width);
     res.status(200).sendFile(imagePath);
   } catch (error) {
