@@ -8,7 +8,7 @@ describe("product model", () => {
     id: 1,
     name: "Light Bulb",
     price: "9.99",
-    category_id: 1
+    category_id: 1,
   };
 
   beforeAll(async () => {
@@ -18,7 +18,7 @@ describe("product model", () => {
   it("should create new product", async () => {
     const product: Product = {
       name: "Candy",
-      price: "4.99"
+      price: "4.99",
     };
     const newProduct = await productStorage.create(product);
     expect(newProduct.name).toEqual(product.name);
@@ -39,7 +39,7 @@ describe("product model", () => {
   it("should update product", async () => {
     const product: Product = {
       name: "Candy",
-      price: "4.99"
+      price: "4.99",
     };
     const updateProduct = await productStorage.create(product);
     updateProduct.price = "5";
@@ -51,7 +51,7 @@ describe("product model", () => {
     const product: Product = {
       id: 2,
       name: "Candy",
-      price: "5"
+      price: "5",
     };
     expect(async () => await productStorage.delete(product)).not.toThrowError();
   });

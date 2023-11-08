@@ -1,5 +1,5 @@
-INSERT INTO categories(name)
-VALUES ('Beverage'),
-       ('Food'),
-       ('Electronic'),
-       ('Books');
+INSERT INTO categories(id, name)
+VALUES (1, 'Beverage'),
+       (2, 'Food'),
+       (3, 'Electronic'),
+       (4, 'Books');

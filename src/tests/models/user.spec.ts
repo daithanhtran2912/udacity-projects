@@ -10,7 +10,7 @@ describe("user model", () => {
     firstname: "John",
     lastname: "Doe",
     username: "johndoe",
-    password: "johndoe123"
+    password: "johndoe123",
   };
 
   beforeAll(async () => {
@@ -23,7 +23,7 @@ describe("user model", () => {
       firstname: "Jane",
       lastname: "Doe",
       username: "janedoe",
-      password: "janedoe999"
+      password: "janedoe999",
     };
     const newUser = await users.create(user);
     expect(newUser.firstname).toEqual(user.firstname);

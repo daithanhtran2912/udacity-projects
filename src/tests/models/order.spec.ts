@@ -10,23 +10,23 @@ const productStorage = new ProductStorage();
 describe("order model", () => {
   const user: User = {
     id: 1,
-    firstname: "John",
-    lastname: "Doe",
-    username: "johndoe",
-    password: "johndoe123"
+    firstname: "Alison",
+    lastname: "Colin",
+    username: "alisoncolin",
+    password: "alisoncolin999",
   };
 
   const product: Product = {
     id: 1,
     name: "Light Bulb",
     price: "9.99",
-    category_id: 3
+    category_id: 3,
   };
 
   const order: Order = {
     id: 1,
     user_id: 1,
-    status: false
+    status: false,
   };
 
   beforeAll(async () => {
@@ -36,6 +36,7 @@ describe("order model", () => {
   });
 
   it("should index orders", async () => {
+    await productsOrders.create(order);
     const orders = await productsOrders.index();
     expect(orders.length).toBeGreaterThan(0);
   });
@@ -49,7 +50,7 @@ describe("order model", () => {
     const order: Order = {
       id: 2,
       user_id: 1,
-      status: false
+      status: false,
     };
     const result = await productsOrders.create(order);
     expect(result).not.toBeNull();
@@ -59,15 +60,11 @@ describe("order model", () => {
     const order: Order = {
       id: 3,
       user_id: 1,
-      status: false
+      status: false,
     };
     const newOrder = await productsOrders.create(order);
     const result = await productsOrders.completeOrder(Number(newOrder.id));
     expect(result.status).toEqual(true);
-  });
-
-  it("should delete order", async () => {
-    expect(async () => await productsOrders.delete(2)).not.toThrowError();
   });
 
   it("should add product to order", async () => {
@@ -76,10 +73,13 @@ describe("order model", () => {
       user_id: 1,
       status: false,
       product_id: 1,
-      quantity: 5
+      quantity: 5,
     };
-    const result = await productsOrders
-      .addProduct(Number(productOrder.id), Number(productOrder.product_id), Number(productOrder.quantity));
+    const result = await productsOrders.addProduct(
+      Number(productOrder.id),
+      Number(productOrder.product_id),
+      Number(productOrder.quantity)
+    );
     expect(result).not.toBeNull();
   });
 
@@ -96,10 +96,11 @@ describe("order model", () => {
       user_id: 1,
       status: false,
       product_id: 1,
-      quantity: 10
+      quantity: 10,
     };
-    expect(async () => await productsOrders
-      .removeProduct(Number(productOrder.id), Number(productOrder.product_id))).not.toThrowError();
+    expect(
+      async () => await productsOrders.removeProduct(Number(productOrder.id), Number(productOrder.product_id))
+    ).not.toThrowError();
   });
 
   it("should get orders by user id", async () => {
@@ -110,12 +111,16 @@ describe("order model", () => {
   it("should get completed orders by user id", async () => {
     const order: Order = {
       user_id: 1,
-      status: false
+      status: false,
     };
     const newOrder = await productsOrders.create(order);
     const completed = await productsOrders.completeOrder(Number(newOrder.id));
     const completedOrders = await productsOrders.completedOrders(Number(completed.user_id));
     expect(completedOrders.length).toBeGreaterThan(0);
+  });
+
+  it("should delete order", async () => {
+    expect(async () => await productsOrders.delete(2)).not.toThrowError();
   });
 
   afterAll(async () => {
@@ -125,7 +130,8 @@ describe("order model", () => {
       const sql =
         "TRUNCATE orders RESTART IDENTITY CASCADE; " +
         "TRUNCATE users RESTART IDENTITY CASCADE; " +
-        "TRUNCATE products RESTART IDENTITY CASCADE; ";
+        "TRUNCATE products RESTART IDENTITY CASCADE; " +
+        "TRUNCATE products_orders RESTART IDENTITY CASCADE; ";
       await connection.query(sql);
     } catch (err) {
       throw new Error(`Could not truncate table orders. ${err}`);

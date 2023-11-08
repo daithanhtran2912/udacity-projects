@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Order, ProductOrder, ProductsOrders } from "../models/order";
+import { Order, ProductsOrders } from "../models/order";
 import { Users } from "../models/user";
 
 const productsOrders = new ProductsOrders();

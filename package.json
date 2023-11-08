@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "npm run build && db-migrate --env test reset && db-migrate --env test up && cross-env ENV=test jasmine-ts --config spec/support/jasmine.json",
+    "test": "npm run build && db-migrate --env test reset && db-migrate --env test up && cross-env ENV=test jasmine-ts --config spec/support/jasmine.json && db-migrate --env test reset || db-migrate --env test reset",
     "tsc": "tsc",
     "lint": "npx eslint ./src",
     "prettier": "npx prettier --config .prettierrc ./src --write",
