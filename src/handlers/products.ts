@@ -18,6 +18,9 @@ const index = async (_req: Request, res: Response) => {
 const show = async (req: Request, res: Response) => {
   try {
     const id = Number(req.params.id);
+    if (Number.isNaN(id)) {
+      throw new Error("Invalid request data!");
+    }
     const product = await productStorage.show(id);
     res.json(product);
   } catch (err) {
@@ -52,6 +55,9 @@ const create = async (req: Request, res: Response) => {
 const findProductByCategory = async (req: Request, res: Response) => {
   try {
     const category_id = Number(req.params.id);
+    if (Number.isNaN(category_id)) {
+      throw new Error("Invalid request data!");
+    }
     const products = await productStorage.findProductsByCategory(category_id);
     res.json(products);
   } catch (err) {

@@ -36,6 +36,9 @@ const show = async (req: Request, res: Response) => {
 
   try {
     const id = Number(req.params.id);
+    if (Number.isNaN(id)) {
+      throw new Error("Invalid request data!");
+    }
     const result = await productsOrders.show(id);
     res.json(result);
   } catch (err) {
@@ -79,6 +82,9 @@ const getOrderByUserId = async (req: Request, res: Response) => {
 
   try {
     const user_id = Number(req.params.id);
+    if (Number.isNaN(user_id)) {
+      throw new Error("Invalid request data!");
+    }
     const orders = await productsOrders.getOrderByUserId(user_id);
     res.json(orders);
   } catch (err) {
@@ -198,10 +204,33 @@ const completeOrder = async (req: Request, res: Response) => {
   }
 };
 
+const completedOrders = async (req: Request, res: Response) => {
+  try {
+    const authorization = req.headers.authorization;
+    const token = authorization!.split(" ")[1];
+    jwt.verify(token, process.env.TOKEN_SECRET as jwt.Secret);
+  } catch (err) {
+    res.status(401).json("Access denied, invalid token!");
+    return;
+  }
+
+  try {
+    const id = Number(req.params.id);
+    if (Number.isNaN(id)) {
+      throw new Error("Invalid request data!");
+    }
+    const result = await productsOrders.completedOrders(id);
+    res.json(result);
+  } catch (err) {
+    res.status(400).json((err as Error).message);
+  }
+};
+
 const orderRoutes = (app: express.Application) => {
   app.get("/orders", index);
   app.get("/orders/:id", show);
   app.get("/orders/users/:id", getOrderByUserId);
+  app.get("/orders/users/:id/completed", completedOrders);
   app.post("/orders", create);
   app.post("/orders/:id", completeOrder);
   app.post("/orders/:id/products", addProductOrder);

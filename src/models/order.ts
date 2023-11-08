@@ -170,4 +170,20 @@ export class ProductsOrders {
       }
     }
   }
+
+  async completedOrders(id: number): Promise<ProductOrder[]> {
+    let connection = null;
+    try {
+      connection = await Client.connect();
+      const sql = "SELECT * FROM orders WHERE status=true AND user_id=($1)";
+      const result = await connection.query(sql, [id]);
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Could not get completed orders by user id ${id}. ${err}`);
+    } finally {
+      if (connection !== null) {
+        connection.release();
+      }
+    }
+  }
 }
