@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
 import productRoutes from "./handlers/products";
 import userRoutes from "./handlers/users";
+import orderRoutes from "./handlers/orders";
 
 const app: express.Application = express();
 const port = 3000;
@@ -19,5 +20,6 @@ app.listen(port, function () {
 
 productRoutes(app);
 userRoutes(app);
+orderRoutes(app);
 
 export default app;

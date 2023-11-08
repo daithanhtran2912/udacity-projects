@@ -59,7 +59,7 @@ const findProductByCategory = async (req: Request, res: Response) => {
   }
 };
 
-const topFiveProducts = async (req: Request, res: Response) => {
+const topFiveProducts = async (_req: Request, res: Response) => {
   try {
     const products = await productStorage.topFiveProducts();
     res.json(products);
@@ -72,7 +72,7 @@ const productRoutes = (app: express.Application) => {
   app.get("/products", index);
   app.get("/products/:id", show);
   app.get("/products/categories/:id", findProductByCategory);
-  app.get("/prodcuts/most-popular", topFiveProducts);
+  app.get("/most-popular", topFiveProducts);
   app.post("/products", create);
 };
 

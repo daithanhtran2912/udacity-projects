@@ -59,6 +59,41 @@ export class ProductStorage {
     }
   }
 
+  async update(p: Product): Promise<Product> {
+    let connection = null;
+    try {
+      connection = await Client.connect();
+      const sql = "UPDATE products SET name=($1), price=($2), category_id=($3) WHERE id=($4) RETURNING *";
+      const result = await connection.query(sql, [p.name, p.price, p.category_id, p.id]);
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not update product with id ${p.id}. ${err}`);
+    } finally {
+      if (connection !== null) {
+        connection.release();
+      }
+    }
+  }
+
+  async delete(p: Product): Promise<void> {
+    let connection = null;
+    try {
+      connection = await Client.connect();
+      // This is not practical to remove products from the products_orders table. 
+      // However, as this is a learning project, let's keep it simple. :D
+      const sqlDeleteProductsOrders = "DELETE FROM products_orders WHERE product_id=($1)";
+      await connection.query(sqlDeleteProductsOrders, [p.id]);
+      const sqlDeleteProducts = "DELETE FROM products WHERE id=($1)";
+      await connection.query(sqlDeleteProducts, [p.id]);
+    } catch (err) {
+      throw new Error(`Could not delete product with id ${p.id}. ${err}`);
+    } finally {
+      if (connection !== null) {
+        connection.release();
+      }
+    }
+  }
+
   async findProductsByCategory(category_id: number): Promise<Product[]> {
     let connection = null;
     try {
@@ -82,7 +117,10 @@ export class ProductStorage {
     let connection = null;
     try {
       connection = await Client.connect();
-      const sql ="SELECT * FROM products LIMIT 5";
+      const sql = "SELECT p.name, p.price, p.category_id, SUM(po.quantity) as total_sales " +
+        " FROM products p JOIN products_orders po ON po.product_id=p.id " +
+        " GROUP BY p.name, p.price, p.category_id " +
+        " ORDER BY total_sales DESC LIMIT 5";
       const result = await connection.query(sql);
       return result.rows;
     } catch (err) {
