@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "start": "node src/server.ts",
+    "start": "node dist/server.js",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "jasmine-ts",
+    "test": "npm run build && db-migrate --env test reset && db-migrate --env test up && cross-env ENV=test jasmine-ts --config spec/support/jasmine.json",
     "tsc": "tsc",
     "lint": "npx eslint ./src",
     "prettier": "npx prettier --config .prettierrc ./src --write",
@@ -34,13 +34,16 @@
     "@types/jsonwebtoken": "^9.0.4",
     "@types/node": "^20.8.4",
     "@types/pg": "^8.10.5",
+    "@types/supertest": "^2.0.16",
     "@types/typescript": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
+    "cross-env": "^7.0.3",
     "jasmine": "^3.99.0",
-    "jasmine-spec-reporter": "^6.0.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "jasmine-ts": "^0.3.3",
     "prettier": "^3.0.3",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.1"
   }
 }

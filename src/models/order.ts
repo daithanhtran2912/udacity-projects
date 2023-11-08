@@ -11,7 +11,7 @@ export type ProductOrder = {
   product_id?: number;
   name?: number;
   price?: number;
-  quantity: number;
+  quantity?: number;
   user_id?: number;
   status?: boolean;
 };
@@ -37,7 +37,8 @@ export class ProductsOrders {
     let connection = null;
     try {
       connection = await Client.connect();
-      const sql = "SELECT o.id, po.product_id, p.name, p.price, po.quantity, o.user_id, o.status " +
+      const sql =
+        "SELECT o.id, po.product_id, p.name, p.price, po.quantity, o.user_id, o.status " +
         " FROM orders o " +
         " LEFT JOIN products_orders po ON po.order_id=o.id " +
         " LEFT JOIN products p ON po.product_id=p.id " +
@@ -89,7 +90,7 @@ export class ProductsOrders {
     let connection = null;
     try {
       connection = await Client.connect();
-      // This is not practical to remove orders from the products_orders table. 
+      // This is not practical to remove orders from the products_orders table.
       // However, as this is a learning project, let's keep it simple. :D
       const sqlDeleteProductsOrders = "DELETE FROM products_orders WHERE order_id=($1)";
       await connection.query(sqlDeleteProductsOrders, [id]);
@@ -108,7 +109,8 @@ export class ProductsOrders {
     let connection = null;
     try {
       connection = await Client.connect();
-      const sql = "INSERT INTO products_orders(order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *";
+      const sql =
+        "INSERT INTO products_orders(order_id, product_id, quantity) VALUES($1, $2, $3) RETURNING *";
       const result = await connection.query(sql, [order_id, product_id, quantity]);
       return result.rows[0];
     } catch (err) {
@@ -155,7 +157,8 @@ export class ProductsOrders {
     let connection = null;
     try {
       connection = await Client.connect();
-      const sql = "SELECT o.id, po.product_id, p.name, p.price, po.quantity, o.user_id, o.status " +
+      const sql =
+        "SELECT o.id, po.product_id, p.name, p.price, po.quantity, o.user_id, o.status " +
         " FROM orders o " +
         " LEFT JOIN products_orders po ON po.order_id=o.id " +
         " LEFT JOIN products p ON po.product_id=p.id " +

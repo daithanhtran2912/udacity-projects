@@ -69,12 +69,8 @@ export class Users {
       connection = await Client.connect();
       const sql = "SELECT password FROM users WHERE username=($1)";
       const result = await connection.query(sql, [username]);
-
-      console.log(password + process.env.PEPPER);
-
       if (result.rows.length) {
         const user = result.rows[0];
-        console.log(user);
         if (bcrypt.compareSync(password + process.env.PEPPER, user.password)) {
           return user;
         }

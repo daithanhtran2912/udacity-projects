@@ -59,7 +59,7 @@ const create = async (req: Request, res: Response) => {
   try {
     const order: Order = {
       user_id: req.body.user_id,
-      status: false
+      status: false,
     };
     // Verify user_id existed
     await users.show(order.user_id);

@@ -13,6 +13,6 @@
     "port": { "ENV": "POSTGRES_PORT" },
     "user": { "ENV": "POSTGRES_USER" },
     "password": { "ENV": "POSTGRES_PASSWORD" },
-    "database": { "ENV": "POSTGRES_DB" }
+    "database": { "ENV": "POSTGRES_DB_TEST" }
   }
 }

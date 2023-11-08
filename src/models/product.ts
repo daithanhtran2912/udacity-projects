@@ -79,7 +79,7 @@ export class ProductStorage {
     let connection = null;
     try {
       connection = await Client.connect();
-      // This is not practical to remove products from the products_orders table. 
+      // This is not practical to remove products from the products_orders table.
       // However, as this is a learning project, let's keep it simple. :D
       const sqlDeleteProductsOrders = "DELETE FROM products_orders WHERE product_id=($1)";
       await connection.query(sqlDeleteProductsOrders, [p.id]);
@@ -117,8 +117,9 @@ export class ProductStorage {
     let connection = null;
     try {
       connection = await Client.connect();
-      const sql = "SELECT p.name, p.price, p.category_id, SUM(po.quantity) as total_sales " +
-        " FROM products p JOIN products_orders po ON po.product_id=p.id " +
+      const sql =
+        "SELECT p.name, p.price, p.category_id, SUM(po.quantity) as total_sales " +
+        " FROM products p LEFT JOIN products_orders po ON po.product_id=p.id " +
         " GROUP BY p.name, p.price, p.category_id " +
         " ORDER BY total_sales DESC LIMIT 5";
       const result = await connection.query(sql);
