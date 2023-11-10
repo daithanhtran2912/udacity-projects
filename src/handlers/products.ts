@@ -46,6 +46,11 @@ const create = async (req: Request, res: Response) => {
       price: req.body.price,
       category_id: category !== null ? category_id : null,
     };
+
+    if (product.name === null || product.name === undefined || product.name === "" ||
+      product.price === null || product.price === undefined || product.price === "") {
+      throw new Error("Invalid request data!");
+    }
     res.json(await productStorage.create(product));
   } catch (err) {
     res.status(400).json((err as Error).message);

@@ -28,6 +28,7 @@ filled in):
 
 ```
 ENV=dev
+PORT=3000
 
 POSTGRES_HOST=your_ip
 POSTGRES_PORT=5432
@@ -42,8 +43,6 @@ SALT_ROUND=10
 ```
 
 ### 1. Setup Postgres Database
-
-<details>
 **_Option 1: Download PostgreSQL from the website:_**
 Download PostgreSQL from the official website by following the instructions provided [**here**](https://www.postgresql.org/download/).
 ```
@@ -69,7 +68,6 @@ Download PostgreSQL from the official website by following the instructions prov
 > \c store_front_db_test;
 > GRANT ALL PRIVILEGES ON DATABASE store_front_db_test TO full_stack_user;
 ```
-</details>
 
 **_Option 2: Use Docker and docker-compose.yml:_**
 Use Docker to run the database in a container. To do this, navigate to the project root folder and run `docker-compose up -d` using the `docker-compose.yml` file.
@@ -115,11 +113,165 @@ To run tests, open command promt and navigate to the project root, run:
 ```
 
 ### 5. Start The Project
-To start the project, open command promt and navigate to the project root, run:
+To start the project, open command promt and navigate to the project root, run (The default backend port is running at 3000):
 ```
 > npm run build
 # then
 > npm run start
 ```
 
-## Steps to run in local machine
+## Database schema
+![DB Schema](store_front_db_schema.png)
+
+## API Endpoints
+### 1. Users
+* #### Create new user
+```
+POST /users
+```
+| Body          | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `firstname`   | `string` |<p align="center">:white_check_mark:</p>  | First Name of the user |
+| `lastname`    | `string` |<p align="center">:white_check_mark:</p>  | Last Name of the user  |
+| `username`    | `string` |<p align="center">:white_check_mark:</p>  | Username               |
+| `password`    | `string` |<p align="center">:white_check_mark:</p>  | Password               |
+
+* #### Index all users
+```
+GET /users
+```
+
+* #### Show user
+```
+GET /users/:id
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | user id                |
+
+### 2. Products
+* #### Create new product
+```
+POST /products
+```
+| Body          | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `name`        | `string` |<p align="center">:white_check_mark:</p>  | name of the product    |
+| `price`       | `string` |<p align="center">:white_check_mark:</p>  | price of the product   |
+| `category_id` | `number` |                                          | product's category     |
+
+* #### Index all products
+```
+GET /products
+```
+
+* #### Show product
+```
+GET /products/:id
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | product id             |
+
+* #### Find products by category
+```
+GET /products/categories/:id
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | category id            |
+
+* #### Get top 5 most popular products
+```
+GET /most-popular
+```
+
+### 3. Orders
+* #### Create new order
+```
+POST /orders
+```
+| Body          | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `user_id`     | `number` |<p align="center">:white_check_mark:</p>  | user id                |
+| `status`      | `string` |                                          | order status           |
+
+* #### Index all orders
+```
+GET /orders
+```
+
+* #### Show order details
+```
+GET /orders/:id
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |
+
+* #### Show orders by user
+```
+GET /orders/users/:id
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | user id                |
+
+* #### Show completed orders by user
+```
+GET /orders/users/:id/completed
+```
+| Parameter     | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | user id                |
+
+* #### Add new product to order
+```
+POST /orders/:id/products
+```
+| Parameter     | Type     | Required                                 | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |
+
+| Body          | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `product_id`  | `number` | <p align="center">:white_check_mark:</p> | product id             |
+| `quantity`    | `number` | <p align="center">:white_check_mark:</p> | quantity               |
+
+* #### Update product quantity of order
+```
+PUT /orders/:id/products/:product_id
+```
+| Parameter     | Type     | Required                                 | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |
+| `product_id`  | `number` |<p align="center">:white_check_mark:</p>  | product id             |
+
+| Body          | Type     |Required                                  | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `quantity`    | `number` | <p align="center">:white_check_mark:</p> | quantity               |
+
+* #### Remove product from order
+```
+DELETE /orders/:id/products/:product_id
+```
+| Parameter     | Type     | Required                                 | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |
+| `product_id`  | `number` |<p align="center">:white_check_mark:</p>  | product id             |
+
+* #### Remove order
+```
+DELETE /orders/:id
+```
+| Parameter     | Type     | Required                                 | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |
+
+* #### Complete order
+```
+PUT /orders/:id
+```
+| Parameter     | Type     | Required                                 | Description            |
+|:--------------|:---------|:-----------------------------------------|:-----------------------|
+| `id`          | `number` |<p align="center">:white_check_mark:</p>  | order id               |

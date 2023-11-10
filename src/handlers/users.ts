@@ -49,6 +49,12 @@ const create = async (req: Request, res: Response) => {
     password: req.body.password,
   };
   try {
+    Object.values(user).every((field) => {
+      if (field === null || field === undefined || field === "") {
+        throw new Error("Invalid request data!");
+      }
+    });
+
     const newUser = await users.create(user);
     const token = jwt.sign({ user: newUser }, process.env.TOKEN_SECRET as jwt.Secret);
     res.json(token);

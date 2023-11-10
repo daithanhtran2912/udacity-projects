@@ -232,7 +232,7 @@ const orderRoutes = (app: express.Application) => {
   app.get("/orders/users/:id", getOrderByUserId);
   app.get("/orders/users/:id/completed", completedOrders);
   app.post("/orders", create);
-  app.post("/orders/:id", completeOrder);
+  app.put("/orders/:id", completeOrder);
   app.post("/orders/:id/products", addProductOrder);
   app.put("/orders/:id/products/:product_id", updateProductOrder);
   app.delete("/orders/:id/products/:product_id", removeProductOrder);
