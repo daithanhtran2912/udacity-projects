@@ -65,7 +65,7 @@ describe("orders endpoints", () => {
   });
 
   it("should require authentication when completed order", (done) => {
-    request.post("/orders/1").then((response) => {
+    request.put("/orders/1").then((response) => {
       expect(response.status).toEqual(401);
       done();
     });
@@ -162,7 +162,7 @@ describe("orders endpoints", () => {
       status: false,
     };
     request
-      .post("/orders/1")
+      .put("/orders/1")
       .set("Authorization", `Bearer ${authenToken}`)
       .send(order)
       .then((response) => {
