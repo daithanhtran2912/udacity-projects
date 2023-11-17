@@ -1,1 +1,30 @@
-<p>nav-bar works!</p>
+<nav class="navbar fixed-top pb-4 pt-4">
+  <div class="container">
+    <div class="col-auto mr-auto logo">
+      <a class="navbar-header navbar-brand" routerLink="">
+        <img src="../../../assets/my-store.png" width="45" height="45" class="d-inline-block align-center"
+          alt="my-store">
+        My Store
+      </a>
+    </div>
+
+    <div class="col mr-auto">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink=""><fa-icon [icon]="faListUl" /> Products</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-auto">
+      <ul class="nav">
+        <li>
+          <a class="nav-link" routerLink="error"><fa-icon [icon]="faCartShopping" /> Cart</a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="login"><fa-icon [icon]="faArrowRightToBracket" /> Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
