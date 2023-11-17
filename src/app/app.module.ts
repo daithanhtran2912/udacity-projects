@@ -9,7 +9,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
@@ -23,7 +22,6 @@ import { OrderConfirmationComponent } from './pages/order-confirmation/order-con
     NavBarComponent,
     ErrorComponent,
     HomeComponent,
-    ProfileComponent,
     CartComponent,
     CheckOutComponent,
     OrderConfirmationComponent
