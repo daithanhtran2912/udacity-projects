@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Product } from '../../models/Product';
+import { Cart } from '../../models/cart';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent {
+  @Input() productList: Product[] = [];
+  @Input() cart!: Cart;
 
+  constructor(private cartService: CartService) {
+  }
+
+  addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+  }
 }
