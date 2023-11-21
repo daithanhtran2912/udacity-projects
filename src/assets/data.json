@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "name": "Book",
+    "price": 9.99,
+    "url": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "You can read it!"
+  },
+  {
+    "id": 2,
+    "name": "Headphones",
+    "price": 249.99,
+    "url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Listen to stuff!"
+  },
+  {
+    "id": 3,
+    "name": "Backpack",
+    "price": 79.99,
+    "url": "https://images.unsplash.com/photo-1577733975197-3b950ca5cabe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Carry things around town!"
+  },
+  {
+    "id": 4,
+    "name": "Glasses",
+    "price": 129.99,
+    "url": "https://images.unsplash.com/photo-1534844978-b859e5a09ad6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Now you can see!"
+  },
+  {
+    "id": 5,
+    "name": "Cup",
+    "price": 4.99,
+    "url": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Drink anything with it!"
+  },
+  {
+    "id": 6,
+    "name": "Shirt",
+    "price": 29.99,
+    "url": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Wear it with style!"
+  },
+  {
+    "id": 7,
+    "name": "Guitar",
+    "price": 1299.99,
+    "url": "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+    "description": "Play it with style!"
+  }
+]

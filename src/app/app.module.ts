@@ -14,6 +14,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()
