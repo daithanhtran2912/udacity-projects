@@ -7,7 +7,6 @@
         My Store
       </a>
     </div>
-
     <div class="col mr-auto">
       <ul class="nav">
         <li class="nav-item">
@@ -15,14 +14,17 @@
         </li>
       </ul>
     </div>
-
     <div class="col-auto">
       <ul class="nav">
         <li>
-          <a class="nav-link" routerLink="error"><fa-icon [icon]="faCartShopping" /> Cart</a>
+          <a class="nav-link" routerLink="cart"><fa-icon [icon]="faCartShopping" /> Cart
+            <span class="badge bg-secondary rounded-pill" *ngIf="cart.productList?.length">
+              {{cart.productList?.length}}
+            </span>
+          </a>
         </li>
         <li>
-          <a class="nav-link" routerLink="login"><fa-icon [icon]="faArrowRightToBracket" /> Login</a>
+          <a class="nav-link" routerLink="error"><fa-icon [icon]="faArrowRightToBracket" /> Login</a>
         </li>
       </ul>
     </div>
