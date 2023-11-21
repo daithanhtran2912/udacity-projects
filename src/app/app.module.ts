@@ -15,6 +15,7 @@ import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     CartComponent,
     CheckOutComponent,
-    OrderConfirmationComponent
+    OrderConfirmationComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
