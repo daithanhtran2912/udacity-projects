@@ -1,4 +1,26 @@
-<p>{{ product.name }}</p>
-<p>{{ product.description }}</p>
-<p>{{ product.price }}</p>
-<img src="{{ product.url }}" />
+<div class="container pt-5 d-flex justify-content-center col-8">
+  <div class="card shadow-lg p-3 bg-body-tertiary rounded">
+    <img [src]="product.url" class="card-img-top object-fit-cover border border-0 rounded product-img"
+      alt="{{ product.name }}">
+    <div class="card-body">
+      <div class="container">
+        <div class="row pb-2">
+          <h5 class="card-title fs-1">{{ product.name }}</h5>
+          <p class="card-text fs-4">{{ product.description }}</p>
+          <p class="card-text fs-3 text-end">${{ product.price }}</p>
+        </div>
+        <div class="row">
+          <div class="col">
+            <input type="number" #quantity name="quantity" class="text-center form-control input-quantity" min="1"
+              [defaultValue]="1" />
+          </div>
+          <div class="col align-bottom">
+            <button class="btn form-control add-to-cart-btn" (click)="addToCart(product, quantity.value)">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

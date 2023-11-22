@@ -2,7 +2,7 @@
   <div class="row mx-3">
     <div class="col-4 pt-5 d-flex justify-content-center" *ngFor="let product of productList">
       <div class="card" style="width: 18rem;" id="{{ product.id }}">
-        <img class="card-img-top object-fit-cover product-img" src="{{ product.url }}" alt="{{ product.name }}"
+        <img class="card-img-top object-fit-cover product-img" [src]="product.url" alt="{{ product.name }}"
           routerLink="products/{{ product.id }}" />
         <div class="card-body">
           <h5 class="card-title">{{ product.name }}</h5>
