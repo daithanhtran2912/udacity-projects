@@ -16,6 +16,7 @@ import { OrderConfirmationComponent } from './pages/order-confirmation/order-con
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

@@ -12,7 +12,7 @@ export class NavBarComponent implements OnInit {
   faCartShopping = faCartShopping;
   faArrowRightToBracket = faArrowRightToBracket;
   faListUl = faListUl;
-  @Input() cart!: Cart;
+  @Input() cart: Cart;
 
   constructor(private cartService: CartService) { }
 

@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
-import { Cart } from '../../models/cart';
-import { CartService } from '../../services/cart.service';
 import { SpinnerService } from '../../services/spinner.service';
 
 @Component({
@@ -12,20 +10,16 @@ import { SpinnerService } from '../../services/spinner.service';
 })
 export class HomeComponent implements OnInit {
   productList: Product[] = [];
-  cart: Cart;
 
-  constructor(
-    private productService: ProductService,
-    private cartService: CartService,
-    private spinnerService: SpinnerService) {
-    this.cart = this.cartService.getCart();
+  constructor(private productService: ProductService, private spinnerService: SpinnerService) {
   }
 
   ngOnInit(): void {
     this.spinnerService.show();
-    this.productService.getAllProducts().subscribe(res => {
-      this.productList = res;
+    // Simulate fetching data from api
+    setTimeout(() => {
+      this.productList = this.productService.getAllProducts();
       this.spinnerService.hide();
-    });
+    }, 200);
   }
 }

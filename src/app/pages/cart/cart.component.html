@@ -1,1 +1,11 @@
-<p>cart works!</p>
+<p>{{ cart.username }}</p>
+<ul>
+  <li *ngFor="let product of cart.productList">
+    <p>{{ product.name }}</p>
+    <p>{{ product.description }}</p>
+    <p>{{ product.price }}</p>
+    <p>{{ product.quantity }}</p>
+  </li>
+</ul>
+<p *ngIf="cart.totalBillAmount">{{ cart.totalBillAmount }}</p>
+<button *ngIf="cart.productList?.length">Check out</button>

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../models/Product';
-import { Cart } from '../../models/cart';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -10,12 +9,12 @@ import { CartService } from '../../services/cart.service';
 })
 export class ProductListComponent {
   @Input() productList: Product[] = [];
-  @Input() cart!: Cart;
 
-  constructor(private cartService: CartService) {
-  }
+  constructor(private cartService: CartService) { }
 
-  addToCart(product: Product): void {
+  addToCart(product: Product, quantityStr: string): void {
+    const quantity = Number.parseInt(quantityStr);
+    product.quantity = quantity;
     this.cartService.addToCart(product);
   }
 }
