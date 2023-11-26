@@ -33,7 +33,11 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(product: Product, quantityStr: string): void {
     const quantity = Number.parseInt(quantityStr);
+    if (isNaN(quantity)) {
+      return;
+    }
     product.quantity = quantity;
     this.cartService.addToCart(product);
+    alert('Added to cart!');
   }
 }

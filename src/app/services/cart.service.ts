@@ -27,10 +27,18 @@ export class CartService {
     } else {
       const found = this.cart.productList.find((p) => p.id === product.id);
       if (found) {
-        (found.quantity as number) += (product.quantity as number);
+        found.quantity = Number(found.quantity) + Number(product.quantity);
       }
     }
     this.calculateTotalBillAmount();
+  }
+
+  updateProductQuantity(id: number, quantity: number): void {
+    const found = this.cart.productList!.find((p) => p.id === id);
+    if (found) {
+      found.quantity = quantity;
+      this.calculateTotalBillAmount();
+    }
   }
 
   private calculateTotalBillAmount(): void {
@@ -41,8 +49,9 @@ export class CartService {
     this.cart.totalBillAmount = Number(totalBillAmount.toFixed(2));
   }
 
-  removeFromCart(product: Product): void {
-    const index = this.cart.productList?.findIndex((p) => p.id === product.id);
+  removeFromCart(id: number): void {
+    const index = this.cart.productList?.findIndex((p) => p.id === id);
     this.cart.productList?.splice((index as number), 1);
+    this.calculateTotalBillAmount();
   }
 }

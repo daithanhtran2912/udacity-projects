@@ -1,0 +1,23 @@
+.product-page-btn {
+  background-color: #557c55;
+  color: #f2ffe9;
+  width: fit-content;
+}
+
+.checkout-btn {
+  background-color: #557c55;
+  color: #f2ffe9;
+  width: 100%;
+}
+
+.cart {
+  padding-bottom: 30rem;
+}
+
+.empty-cart {
+  padding-bottom: 20rem;
+}
+
+.error-msg {
+  color: crimson;
+}

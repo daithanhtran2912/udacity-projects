@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'products/:id',
     component: ProductDetailComponent
+  },
+  {
+    path: 'order-confirmation',
+    component: OrderConfirmationComponent
   }
 ];
 

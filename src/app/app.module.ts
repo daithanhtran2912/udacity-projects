@@ -11,7 +11,6 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CartComponent } from './pages/cart/cart.component';
-import { CheckOutComponent } from './pages/check-out/check-out.component';
 import { OrderConfirmationComponent } from './pages/order-confirmation/order-confirmation.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,7 +27,6 @@ import { FormsModule } from '@angular/forms';
     ErrorComponent,
     HomeComponent,
     CartComponent,
-    CheckOutComponent,
     OrderConfirmationComponent,
     SpinnerComponent
   ],
