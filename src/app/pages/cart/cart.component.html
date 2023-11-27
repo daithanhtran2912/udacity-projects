@@ -54,7 +54,8 @@
         <div class="mb-2">
           <label for="creditCardLbl" class="form-label">Credit card</label>
           <input type="text" class="form-control" name="creditCard" id="creditCardLbl" placeholder="(16-digit number)"
-            [(ngModel)]="creditCard" minlength="16" maxlength="16" pattern="[0-9]*" required #creditCardInput="ngModel" />
+            [(ngModel)]="creditCard" minlength="16" maxlength="16" pattern="[0-9]*" required
+            #creditCardInput="ngModel" />
           <div class="error-msg" *ngIf="creditCardInput.invalid && creditCardInput.dirty">
             <div *ngIf="creditCardInput.errors!['required']">
               Credit card is required!
@@ -64,7 +65,7 @@
             </div>
           </div>
         </div>
-        <p class="">We'll never share your payment details with anyone else.</p>
+        <p><small><em>We'll never share your payment details with anyone else.</em></small></p>
         <button type="submit" [disabled]="form.invalid" class="btn checkout-btn form-control-lg">Checkout</button>
       </form>
     </div>
@@ -83,7 +84,8 @@
     <p>
       Before proceed to checkout, you must add some products to your cart.
       <br />
-      You will find a lot of interesting products on our <a class="text-decoration-none" routerLink=""><b>Products</b></a> page.
+      You will find a lot of interesting products on our <a class="text-decoration-none"
+        routerLink=""><b>Products</b></a> page.
     </p>
   </div>
   <div class="row d-flex justify-content-center">

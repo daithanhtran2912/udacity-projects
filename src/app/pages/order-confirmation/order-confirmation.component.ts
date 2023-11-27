@@ -10,8 +10,7 @@ import { Cart } from '../../models/cart';
 export class OrderConfirmationComponent implements OnInit {
   cart: Cart;
 
-  constructor(private cartService: CartService) {
-  }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
     this.cart = this.cartService.getCart();
