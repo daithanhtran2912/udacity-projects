@@ -27,6 +27,11 @@ const routes: Routes = [
   {
     path: 'order-confirmation',
     component: OrderConfirmationComponent
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: ErrorComponent
   }
 ];
 
