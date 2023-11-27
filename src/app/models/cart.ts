@@ -1,7 +1,10 @@
 import { Product } from "./Product";
 
 export interface Cart {
-  username: string;
+  fullname?: string;
+  address?: string;
+  creditCard?: number;
   productList?: Product[];
   totalBillAmount?: number;
+  isCheckout: boolean;
 };

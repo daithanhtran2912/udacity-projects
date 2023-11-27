@@ -18,7 +18,6 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
-    // Fetch the cart every time you access the page
     this.cart = this.cartService.getCart();
   }
 
@@ -38,6 +37,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
+    this.cart = this.cartService.updateCartInfo(this.fullname, this.address, this.creditCard);
     this.router.navigate(['/order-confirmation']);
   }
 }
