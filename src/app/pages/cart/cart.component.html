@@ -12,8 +12,8 @@
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description }}</p>
                 <p class="card-text">{{ product.price }}</p>
-                <input type="number" #quantity name="quantity" class="text-center form-control form-control-sm" min="0"
-                  value="{{ product.quantity }}" (change)="updateProductQuantity(product, quantity.value)" />
+                <input type="number" name="quantity" class="text-center form-control form-control-sm" min="0"
+                  [(ngModel)]="product.quantity" (ngModelChange)="updateProductQuantity(product, $event)" />
               </div>
             </div>
           </div>
