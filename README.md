@@ -59,7 +59,7 @@ The e2e tests are using Protractor and Jasmine.
 - [Express](https://expressjs.com/) - Javascript API Framework
 
 ## Screenshots
-Frontend url: http://my-bucket-009106188552.s3-website-us-east-1.amazonaws.com/home
+Frontend url: http://my-bucket-009106188552.s3-website-us-east-1.amazonaws.com
 
 ![alt text](./documents/FRONT-END_APP.png)
 
