@@ -1,0 +1,69 @@
+I. Problem 1 - LRU Cache:
+  - Time complexity: The time complexity of 'get' and 'set' functions depends on the operations of 'OrderedDict' data structure.
+    + Retrieving an item from the cache involves checking if the key exists in the cache, so the time complexity of get(key) function is O(1).
+    + Setting a value in the cache involves updating the 'OrderedDict' with the key-value pair, hence the time complexity of set(key, value) function is O(1).
+    => Therefore the overall time complexity of this is O(1).
+  - Space complexity: Because we use 'OrderedDict' to store cache, each key-value pair occupies constant space.
+    => Therefore the overall space complexity is O(n) where n is the capacity of the cache.
+
+II. Problem 2 - File Recursion:
+  - Time complexity: 
+    + Let n be the total number of directories and files in the file system.
+    + The function has to traverse through each directory and file once.
+    => So the time complexity of traversing the entire file system is O(n).
+  - Space complexity:
+    + Let n be the maximum depth of the directory tree.
+    + The function uses a stack to perform depth-first search (DFS) traversal. The size of the stack is proportional to the maximum depth of the directory tree.
+    => So the space complexity of the function is O(n).
+
+III. Problem 3 - Huffman Coding:
+  - Time complexity: 
+    + Huffman encoding:
+      * Let n is the length of input message, constructing min-heap will cost O(n) time complexity.
+      * Repeatedly popping and pushing nodes into the min-heap until only one node remains cost O(nlogn) time complexity.
+      * Traversing the Huffman tree to generate codes for each character cost O(n) time complexity.
+      => Therefore the overall time complexity of encoding function is O(nlogn).
+    + Huffman decoding:
+      * Let n is the length of encoded data, decoding each character required traversing the Huffman tree from the root to a leaf node.
+      => Therefore the overall time complexity of decoding function is O(n).
+  - Space complexity:
+    + Huffman encoding:
+      * Let n is the number of unique characters in the input data, because min-heap, Huffman tree, Huffman codes dictionary required linear space.
+      => Therefore the space complexity of encoding function is O(n)
+    + Huffman decoding:
+      * Let n is the number of unique characters in the input data, because both Huffman tree & Huffman codes dictionary required linear space.
+      => Therefore the space complexity of decoding function is O(n)
+
+IV. Problem 4 - Active Directory:
+  - Time complexity: 
+    + Let n be the total number of users across all groups.
+    + The function has to traverse through all users in the group and its subgroups to determine if the user is present.
+    => So the time complexity of the function is O(n).
+  - Space complexity:
+    + Let n be the total number of users and groups. 
+    + The function utilizes recursion, and each call consumes additional space on the call stack.
+    => So the space complexity of the function is O(n).
+
+V. Problem 5 - Blockchain:
+  - Time complexity: 
+    + The function creates a new block and sets its 'next' pointer to the current head of the blockchain, so the insertion operation take constant time.
+    => So the time complexity of the function is O(n).
+  - Space complexity:
+    + The memory consumption of the function does not scale with the size of the blockchain, only creates new block and update pointers, so the memory usage remains constant.
+    => So the space complexity of the function is O(1).
+
+VI. Problem 6 - Union and Intersection:
+  - Time complexity: 
+    + Union function:
+      * Traversing first and second linked list cost O(n1) and O(n2) time complexity.
+      * Adding elements to the set cost O(1) for each element.
+      * Creating new linked list from the set cost O(m) with m is the size of the set.
+      => Therefore the time complexity of the union function is O(n1 + n2 + m)
+    + Intersection function:
+      * Traversing first and second linked list for element_set_1 and element_set_2 cost O(n1) and O(n2) time complexity.
+      * Finding the intersection of the sets cost O(min(n1 + n2)).
+      * Creating new linked list from the intersection set cost O(m) with m is the size of the intersection set.
+      => Therefore the time complexity of the intersection function is O(n1 + n2 + min(n1 + n2) + m)
+  - Space complexity:
+    + Both union and intersection function using set to store unique elements, which can consume additional memory, let n is the total number of unique elements in both input linked lists.
+    => So the space complexity of both the union function and the intersection function is O(n).

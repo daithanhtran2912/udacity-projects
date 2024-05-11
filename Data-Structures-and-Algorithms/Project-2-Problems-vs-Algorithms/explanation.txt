@@ -1,0 +1,92 @@
+I. Problem 1 - Square Root of an Integer:
+  1. Time complexity:
+    - Let n is the input number.
+    - The function uses binary search to find the square root, so in each iteration of the while loop, it reduces the search space by half.
+    => Therefore the overall time complexity of this function is O(logn).
+  2. Space complexity:
+    - The function only uses a constant amount of extra space.
+    => Therefore the overall space complexity of this function is O(1).
+
+II. Problem 2 - Search in a Rotated Sorted Array:
+  1. Time complexity:
+    - Let n is the number of elements in input list.
+    - The function uses binary search to find the target number in the rotated sorted array, so in each iteration of the while loop, it reduces the search space by half.
+    => Therefore the overall time complexity of this function is O(logn).
+  2. Space complexity:
+    - The function only uses a constant amount of extra space.
+    => Therefore the overall space complexity of this function is O(1).
+
+III. Problem 3 - Rearrange Array Digits:
+  1. Time complexity:
+    - Let n is the number of elements in input list.
+    - The function iterates through the input list once to count the frequency of each digit.
+    - Then iterates through the digit frequencies to construct 2 maximum sum numbers.
+    - The number of iterations of the while loop is not dependent of the size of input list, instead it depends on the frequency of digits in the input list (which can sum up to n).
+    => Therefore the overall time complexity of this function is O(n).
+  2. Space complexity:
+    - Let n is the size of input list, this required O(n) space complexity.
+    - The function creates a digit_frequency list that is constant space.
+    - The function construct first_number and second_number from input list which independent of the size of the input list, and required O(1) space complexity.
+    => Therefore the overall space complexity of this function is O(n).
+
+IV. Problem 4 - Dutch National Flag Problem:
+  1. Time complexity:
+    - Let n is the size of input list.
+    - The function iterates through the input list once using single while loop.
+    => Therefore the overall time complexity of this function is O(n).
+  2. Space complexity:
+    - The function use constant amount of space for variables.
+    => Therefore the overall space complexity of this function is O(1).
+
+V. Problem 5 - Autocomplete with Tries:
+  1. Time complexity:
+    - Insert function: Let m is the number of characters of input word, the insert function iterates over each character of the input word.
+    => Hence, it cost O(m) time complexity to insert a new word.
+    - Find function: Let n is the number of characters of input prefix, the find function iterates over each character of the input prefix.
+    => Hence, it cost O(n) time complexity to find a prefix.
+    - Suffixes function: The function collects all complete word suffixes below the current node, it recursively explores all branches under the current node to find complete word, let k is the number of complete words below the node.
+    => Hence, it cost O(k) time complexity.
+  2. Space complexity:
+    - Let n is total number of characters inserted to the Trie.
+    - For each insertion into the Trie, a new node is created.
+    => Therefore the overall space complexity of this function is O(n).
+
+VI. Problem 6 - Unsorted Integer Array:
+  1. Time complexity:
+    - Let n is the number of elements in the input list.
+    - The function iterates through each element in the input list once.
+    => Therefore the overall time complexity of this function is O(n).
+  2. Space complexity:
+    - The function uses a constant amount of extra space to store the min_value and max_value.
+    => Therefore the overall space complexity of this function is O(1).
+
+VII. Problem 7 - Request Routing in a Web Server with a Trie:
+  1. Time complexity:
+    - RouteTrieNode:
+      + Insert function: The function inserts a node into the trie in constant time.
+      => Hence, it cost O(1) time complexity
+    - RouteTrie:
+      + Let n is the length of the input paths list.
+      + Insert function: The function iterates over the parts of the input paths using a for loop.
+      + Find function: The function iterates over the parts of the input paths using a for loop.
+      => It will cost O(n) time complexity for both functions.
+    - Router:
+      + Let m is the length of input path.
+      + Split path function: The function iterates through each part of the path.
+      => Hence, it cost O(m) time complexity.
+      + Let n is the length of the paths list obtained from splitting the input path.
+      + Add handler function: The function calls the split_path function which has O(m) time complexity and the insert function of RouteTrie, which has O(n) time complexity for each part of the path.
+      => Hence, it cost O(n + m) time complexity.
+      + Lookup function: The function calls the split_path function which has O(m) time complexity and the find function of RouteTrie, which has O(n) time complexity for each part of the path.
+      => Hence, it cost O(n + m) time complexity.
+  2. Space complexity:
+    - RouteTrieNode:
+      + The function insert node into the trie and each node stores a fixed number of attributes.
+      => Hence, it cost O(1) space complexity.
+    - RouteTrie:
+      + The space complexity of RouteTrie depends on the number of nodes in the trie and the length of the paths.
+      + Each node in the trie consumes space for storing its children and handler.
+      => Hence, is cost O(n * m) space complexity, where n is the number of nodes in the trie and m is the average length of the paths.
+    - Router:
+      + The space complexity of Router depends on the space complexity of RouteTrie, because Router primarily stores a reference to a RouteTrie instance and some additional attributes.
+      => Hence, it cost O(n * m) space complexity, where n is the number of nodes in the trie and m is the average length of the paths.

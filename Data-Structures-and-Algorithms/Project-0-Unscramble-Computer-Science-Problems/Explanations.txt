@@ -1,0 +1,31 @@
+Task0:
+- For the first record of texts, accessing an element from a list with index takes constant time, this will take O(1) time complexity.
+- For the last record of calls, accessing an element from a list with index takes constant time, this will take O(1) time complexity.
+=> So the worst-case big-O notation of this will take O(1) time complexity.
+
+Task1:
+- Let's call n is the total number of elements in texts list, m is the total number of elements in calls list:
+  + The first iteration over the texts list will take O(n) time complexity.
+  + The second iteration over the calls list will take O(m) time complexity.
+=> So the worst-case big O notation of this will take O(n + m) time complexity.
+
+Task2:
+- Let's call n is the total number of elements in calls list, to find telephone number spent the longest time on the phone we have to iterate through calls list once.
+=> So the worst-case big O notation of this will take O(n) time complexity.
+
+Task3:
+- Let's call n is the total number of elements in calls list:
+  + Part A: To find all of the area codes and mobile prefixes called by people in Bangalore, we have to iterate calls list once and filter out what is the area codes of the receivers and store in a set. This will take O(n) time complexity to iterate through calls list and O(nlogn) to sorted the result.
+  => For part A, the worst-case big O notation of this will take O(nlogn) time complexity
+  + Part B: To calculate percentage of calls from fixed lines in Bangalore are made to fixed lines in Bangalore we have to iterate through calls list once to find out total of calls make from Bangalore and total of call make from Bangalore to Bangalore. This will take O(n) time complexity to iterate through calls list.
+  => For part B, the worst-case big O notation of this will take O(n) time complexity
+=> So the worst-case big O notation of this will take O(nlogn) time complexity.
+
+Task4:
+- Let's call n is the total number of elements in texts list, m is the total number of elements in calls list:
+  + The first iteration over the calls list will take O(n) time complexity.
+  + The second iteration over the calls list will take O(n) time complexity.
+  + The third iteration over the texts list will take O(n) time complexity.
+  => Combine all the cases above, the algorithm to find the list of possible telemarketers take O(n + m) time complexity. 
+- The sorted algorithm over telemarketers list will take O(nlogn) time complexity.
+=> So the worst-case big O notation of this will take O(nlogn) time complexity.
