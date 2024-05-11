@@ -1,0 +1,14 @@
+.navbar {
+  background-color: #739072;
+}
+
+.logo {
+  border: 1px solid #ece3ce;
+  border-radius: 10px 10px 10px 10px;
+  padding: 1px;
+}
+
+a {
+  color: #ece3ce;
+  text-decoration: none;
+}
