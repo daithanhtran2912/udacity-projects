@@ -1,0 +1,22 @@
+.not-checkout {
+  padding-bottom: 18rem;
+}
+
+.checkout {
+  padding-bottom: 10rem;
+}
+
+.product-page-btn {
+  background-color: #557c55;
+  color: #f2ffe9;
+  width: fit-content;
+}
+
+.cart-page-btn {
+  background-color: #F2E3DB;
+  width: fit-content;
+}
+
+.text-decoration-none {
+  color: black;
+}

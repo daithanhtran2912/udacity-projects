@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row mx-3">
+    <div class="col-4 pt-5 d-flex justify-content-center" *ngFor="let product of productList">
+      <div class="card" style="width: 18rem;" id="{{ product.id }}">
+        <img class="card-img-top object-fit-cover product-img" [src]="product.url" alt="{{ product.name }}"
+          routerLink="products/{{ product.id }}" />
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text text-end">${{ product.price }}</p>
+          <input type="number" #quantity name="quantity" class="text-center form-control form-control-sm" min="1"
+            [defaultValue]="1" />
+          <button class="btn form-control form-control-lg mt-1 add-to-cart-btn"
+            (click)="addToCart(product, quantity.value)">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
