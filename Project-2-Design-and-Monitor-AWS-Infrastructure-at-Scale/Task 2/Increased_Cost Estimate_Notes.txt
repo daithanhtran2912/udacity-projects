@@ -1,0 +1,5 @@
+To increase cost, I update on these resources:
+	- S3: Increase standard storage to 100TB per month.
+	- EC2: Change instance type from m5.xlarge to m5.12xlarge.
+	- RDS: Increase Storage for each RDS instance to 5TB, and change from db.m4.2xlarge to db.m4.4xlarge for both master DB and read replica DB.
+	- Add Route53 Service.

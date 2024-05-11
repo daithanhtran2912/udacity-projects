@@ -1,0 +1,3 @@
+To reduce cost, I update on these resources:
+	- EC2: Change instance type from m5.2xlarge to m5.xlarge to reduce monthly cost.
+	- RDS: Reduce percentage of utilization per month from 100 to 80 percent to reduce monthly cost.

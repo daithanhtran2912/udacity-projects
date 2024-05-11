@@ -1,0 +1,24 @@
+# Identify tools that will allow you to do the following:
+
+## Scan infrastructure as code templates
+- Terrascan: https://github.com/tenable/terrascan
+### Example vulnerability
+- S3 bucket server side encryption is not enabled.
+- Security groups allow ingress from 0.0.0.0:0 to port 22.
+
+##Scan AMI’s or containers for OS vulnerabilities
+- Anchore: https://anchore.com
+- sysdig: https://sysdig.com
+
+### Example vulnerability
+- CVE-2017-18017 Detail: The tcpmss_mangle_packet function in net/netfilter/xt_TCPMSS.c in the Linux kernel before 4.11, and 4.9.x before 4.9.36, allows remote attackers to cause a denial of service (use-after-free and memory corruption) or possibly have unspecified other impact by leveraging the presence of xt_TCPMSS in an iptables action.
+Ref: https://nvd.nist.gov/vuln/detail/CVE-2017-18017
+
+##Scan an AWS environment for cloud configuration vulnerabilities
+- AWS Inspector
+- AWS GuardDuty
+
+### Example vulnerability
+- Encryption is not enabled.
+- Allow SSH from all traffic.
+- IAM role does not comply least privilege principle.

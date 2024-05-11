@@ -1,0 +1,9 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+The Security Group-WebAppSG is allows ingress traffic from the internet to multiple ports which is exposing the server to attacks and allow those egress traffic to any IP address.
+We only need to allow port 5000 from the Security Group to ALB and remove all traffic rule.
+
+# Poor practice 2
+The InstanceRolePolicy-C3 IAM Role has full access to any S3 bucket instance, this is not least privileged. 
+We only need to allow 'GetObject' permission to InstanceRole because the web service instance only need to read recipes.
