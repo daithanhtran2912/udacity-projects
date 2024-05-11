@@ -1,0 +1,14 @@
+# What additional architectural change can be made to reduce the internet facing attack surface of the web application instance.
+- Re-configure Web Service Instance to Private Subnet.
+- Only allows connection from ALB to Web Service Instance.
+- Consider using WAF on ALB to prevent attack.
+
+# Assuming the IAM permissions for the S3 bucket are still insecure, would creating VPC private endpoints for S3 prevent the unauthorized access to the secrets bucket.
+- No, VPC private endpoints can still accessible in AWS network and the IAM permissions if still insecure, thus this still not able to prevent unauthorized access.
+
+# Will applying default encryption setting to the s3 buckets encrypt the data that already exists?
+- No, the default encrypt only encrypt the object since the time we enable it.
+Reference: https://docs.aws.amazon.com/AmazonS3/latest/userguide/default-bucket-encryption.html
+
+# What would happen if the original cloud formation templates are applied to this environment.
+- All the changes has done manually will be lost.

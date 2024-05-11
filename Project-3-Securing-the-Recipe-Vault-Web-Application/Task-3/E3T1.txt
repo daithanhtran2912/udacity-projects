@@ -1,0 +1,14 @@
+# Describe GuardDuty findings that were detected related to the brute force attack
+GuardDuty detected unauthorized access to our instance (Brute force attack), include:
+- Severity.
+- Region.
+- Source of the attack.
+- Target of the attack.
+- Network related information.
+
+# Research the AWS Guard Duty documentation page and explain how GuardDuty may have detected this attack - i.e. what was its source of information.
+- GuardDuty monitors CloudTrail events and using these data sources, GuardDuty create security findings.
+- This finding's severity is low if a brute force attack is aimed at one of your EC2 instances. This finding's severity is high if your EC2 instance is being used to perform the brute force attack.
+- This finding is generated only through monitoring traffic on port 22. If your SSH services are configured to use other ports, this finding is not generated.
+
+Reference: https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-ec2.html#unauthorizedaccess-ec2-sshbruteforce

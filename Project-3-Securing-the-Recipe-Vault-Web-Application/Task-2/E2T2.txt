@@ -1,0 +1,12 @@
+Research and analyze which of the vulnerabilities appear to be related to the code that was deployed for the environment in this project.
+
+Bonus - provide recommendations on how to remediate the vulnerabilities.
+
+- IAM policy is allowing full access to the resources: We need to config specific permission to the IAM policies and enable MFA for the root user.
+- Security group is allowing all traffic: 
+  + We should restrict access from all traffic on port 22
+  + Only allow access from authorized ports
+- S3 buckets: Should enable server-side encryption and logging
+- ALB: 
+  + We should re-config to redirect all HTTP requests to HTTPS requests.
+  + We should enable logging.
