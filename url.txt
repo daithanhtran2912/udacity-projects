@@ -1,0 +1,2 @@
+Github repo: https://github.com/daithanhtran2912/Udacity_DevOps_Capstone_Project
+App url: http://a9c17e2764f3c44b1b50af2932c8288d-1080919225.us-east-1.elb.amazonaws.com/
